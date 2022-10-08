@@ -1,11 +1,21 @@
+import { useState } from "react";
 import React from "react";
 import { Link } from "react-router-dom";
 import { BiUserCircle } from "react-icons/bi";
 
-function Login() {
+function Login(prop) {
+  const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const getformdata = (e) => {
+      e.preventDefault();
+      console.log(email);
+      console.log(password);
+      setEmail('');
+      setPassword('');
+    }
   return (
     <div className="login">
-      <form>
+      <form onSubmit={getformdata}>
         <div className="text-center">
           <BiUserCircle size={"60px"} />
           <h1>Login</h1>
@@ -18,6 +28,7 @@ function Login() {
           </label>
           <input
             type="email"
+            onChange={(e)=>setEmail(e.target.value)}
             class="form-control"
             id="exampleInputEmail1"
             aria-describedby="emailHelp"
@@ -28,6 +39,7 @@ function Login() {
             Password
           </label>
           <input
+           onChange={(e)=>setPassword(e.target.value)}
             type="password"
             class="form-control"
             id="exampleInputPassword1"
