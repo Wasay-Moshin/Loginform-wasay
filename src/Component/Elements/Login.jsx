@@ -3,16 +3,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { BiUserCircle } from "react-icons/bi";
 
-function Login(prop) {
-  const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const getformdata = (e) => {
-      e.preventDefault();
-      console.log(email);
-      console.log(password);
-      setEmail('');
-      setPassword('');
-    }
+function Login() {
+  const [emails, setEmails] = useState("");
+  const [password, setPassword] = useState("");
+  const getformdata = (e) => {
+    e.preventDefault();
+    localStorage.setItem("email", JSON.stringify(emails));
+    localStorage.setItem("pass", JSON.stringify(password));
+  };
   return (
     <div className="login">
       <form onSubmit={getformdata}>
@@ -22,36 +20,40 @@ function Login(prop) {
           <hr />
         </div>
         <div></div>
-        <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">
+        <div className="mb-3">
+          <label for="exampleInputEmail1" className="form-label">
             Email address
           </label>
           <input
             type="email"
-            onChange={(e)=>setEmail(e.target.value)}
-            class="form-control"
+            onChange={(e) => setEmails(e.target.value)}
+            className="form-control"
             id="exampleInputEmail1"
             aria-describedby="emailHelp"
           />
         </div>
-        <div class="mb-3">
-          <label for="exampleInputPassword1" class="form-label">
+        <div className="mb-3">
+          <label for="exampleInputPassword1" className="form-label">
             Password
           </label>
           <input
-           onChange={(e)=>setPassword(e.target.value)}
+            onChange={(e) => setPassword(e.target.value)}
             type="password"
-            class="form-control"
+            className="form-control"
             id="exampleInputPassword1"
           />
         </div>
-        <div class="mb-3 form-check">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-          <label class="form-check-label" for="exampleCheck1">
+        <div className="mb-3 form-check">
+          <input
+            type="checkbox"
+            className="form-check-input"
+            id="exampleCheck1"
+          />
+          <label className="form-check-label" for="exampleCheck1">
             Check me out
           </label>
         </div>
-        <button type="submit" class="btn btn-primary">
+        <button type="submit" className="btn btn-primary">
           Login
         </button>
         <div className="text-center">
@@ -60,7 +62,7 @@ function Login(prop) {
           <label>If you don't have account</label>
           <br />
           <Link to="/Signup">
-            <button type="button" class="btn btn-link">
+            <button type="button" className="btn btn-link">
               Sign Up
             </button>
           </Link>
